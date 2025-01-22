@@ -35,6 +35,11 @@ if [ ! -f "/app/lib/${voice_pack_name}.jar" ]; then
 	unzip "/tmp/${voice_pack_full_name}" -d /tmp
 	mv "/tmp/lib/${voice_pack_name}.jar" /app/lib
 
+	if [ ! -d "/tmp/lib/voices" ]; then
+		cp -av "/tmp/lib/voices" /app/lib
+		rm -rf "/tmp/lib/voices"
+	fi
+
 	bashio::log.info "Installed $voice_pack_name"
 fi
 
